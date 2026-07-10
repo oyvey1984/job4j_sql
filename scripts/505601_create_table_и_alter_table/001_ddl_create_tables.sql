@@ -37,3 +37,4 @@ CONSTRAINT quantity_positive CHECK (quantity > 0),
 CONSTRAINT unit_price_positive CHECK (unit_price > 0)
 );
 
+
