@@ -1,28 +1,28 @@
-    select id, name, price
-    from products
-    order by name;
+SELECT id, name, price
+FROM products
+ORDER BY name;
 
-    select id, name, price
-    from products
-    where is_active = true
-    order by price
-    limit 5;
+SELECT id, name, price
+FROM products
+WHERE is_active = true
+ORDER BY price
+LIMIT 5;
 
-    select id, user_id, status, created_at
-    from orders
-    order by created_at desc
-    limit 10;
+SELECT id, user_id, status, created_at
+FROM orders
+ORDER BY created_at DESC
+LIMIT 10;
 
-    select id, name, email
-    from users u
-    order by created_at DESC, id DESC
-    limit 20 offset 20;
+SELECT id, name, email
+FROM users u
+ORDER BY created_at DESC, id DESC
+LIMIT 20 OFFSET 20;
 
-    select *
-    from order_items
-    order by order_id, unit_price desc, id;
+SELECT *
+FROM order_items
+ORDER BY order_id, unit_price DESC, id;
 
-    select id, name, price
-    from products
-    order by price desc, id
-    limit 3 offset 6;
+SELECT id, name, price
+FROM products
+ORDER BY price DESC, id
+LIMIT 3 OFFSET 6;
