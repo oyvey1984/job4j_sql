@@ -50,3 +50,38 @@ INSERT INTO order_items (order_id, product_id, quantity) VALUES
 -- Заказ 5: 1 Мышь + 1 Клавиатура
 INSERT INTO order_items (order_id, product_id, quantity) VALUES
 (5, 2, 1), (5, 3, 1);
+
+SELECT
+	o.customer_name customer_name,
+	SUM(oi.quantity * p.price ) total_revenue
+FROM orders o
+JOIN order_items oi on o.order_id = oi.order_id
+JOIN products p ON oi.product_id = p.product_id
+WHERE o.status = 'completed'
+GROUP BY o.customer_name
+ORDER BY total_revenue DESC
+LIMIT 2;
+
+SELECT
+	p.category category,
+	SUM(oi.quantity) total_items_sold,
+	SUM(oi.quantity * p.price) category_revenue
+FROM orders o
+JOIN order_items oi on o.order_id = oi.order_id
+JOIN products p ON oi.product_id = p.product_id
+WHERE o.status = 'completed'
+GROUP BY p.category
+HAVING SUM(oi.quantity * p.price) > 30000;
+
+WITH OrderTotals AS (
+    SELECT
+        oi.order_id,
+        SUM(oi.quantity) quantity_in_order
+    FROM order_items oi
+    JOIN orders o ON oi.order_id = o.order_id
+    WHERE o.status = 'completed'
+    GROUP BY oi.order_id
+)
+SELECT
+    AVG(quantity_in_order) AS avg_items_per_order
+FROM OrderTotals;
