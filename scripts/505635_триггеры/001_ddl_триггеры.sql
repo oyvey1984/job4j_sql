@@ -186,3 +186,4 @@ SET price = 777
 WHERE name = 'notebook';
 
 SELECT * FROM products p;
+
